@@ -15,12 +15,12 @@ ui <- list(
     skin = "blue",
     ### Create the app header ----
     dashboardHeader(
-      title = "App Template", # You may use a shortened form of the title here
+      title = "Introducing Luqi", # You may use a shortened form of the title here
       titleWidth = 250,
       tags$li(class = "dropdown", actionLink("info", icon("info"))),
       tags$li(
         class = "dropdown",
-        boastUtils::surveyLink(name = "App_Template")
+        boastUtils::surveyLink(name = "Introducing_Luqi")
       ),
       tags$li(
         class = "dropdown",
@@ -35,12 +35,10 @@ ui <- list(
       sidebarMenu(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
-        menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Example", tabName = "example", icon = icon("book-open-reader")),
-        menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
-        menuItem("Challenge", tabName = "challenge", icon = icon("gears")),
-        menuItem("Game", tabName = "game", icon = icon("gamepad")),
-        menuItem("Wizard", tabName = "wizard", icon = icon("hat-wizard")),
+        menuItem("Facts", tabName = "prerequisites", icon = icon("book")),
+        menuItem("Chicken Chick", tabName = "explore", icon = icon("wpexplorer")),
+        menuItem("Little Game", tabName = "challenge", icon = icon("gears")),
+        menuItem("Historical Moment", tabName = "game", icon = icon("gamepad")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -55,25 +53,29 @@ ui <- list(
         tabItem(
           tabName = "overview",
           withMathJax(),
-          h1("Sample Application for BOAST Apps"), # This should be the full name.
-          p("This is a sample Shiny application for BOAST. Remember, this page
-            will act like the front page (home page) of your app. Thus you will
-            want to have this page catch attention and describe (in general terms)
-            what the user can do in the rest of the app."),
+          h1("Who am I?"), # This should be the full name.
+          p("This is a sample Shiny application for BOAST. Which will help you 
+            to get to know who I am."),
+          br(),
+          br(),
           h2("Instructions"),
-          p("This information will change depending on what you want to do."),
+          p("The following pages are for you to feel free to explore!"),
           tags$ol(
-            tags$li("Review any prerequiste ideas using the Prerequistes tab."),
-            tags$li("Explore the Exploration Tab."),
-            tags$li("Challenge yourself."),
-            tags$li("Play the game to test how far you've come.")
+            tags$li("Review any facts about me using the Facts Tab."),
+            tags$li("See the story behind my family's chickens using the Chicken
+                    Chick Tab."),
+            tags$li("Challenge yourself by playing a little game using the Little 
+                    Game Tab."),
+            tags$li("Explore the important moments in my life using the Historical 
+                    Moments Tab.")
           ),
+          br(),
           ##### Go Button--location will depend on your goals
           div(
             style = "text-align: center;",
             bsButton(
               inputId = "go1",
-              label = "GO!",
+              label = " Let's Go!",
               size = "large",
               icon = icon("bolt"),
               style = "default"
@@ -103,52 +105,56 @@ ui <- list(
         tabItem(
           tabName = "prerequisites",
           withMathJax(),
-          h2("Prerequisites"),
-          p("In order to get the most out of this app, please review the
-            following:"),
-          tags$ul(
-            tags$li("Pre-req 1--Technical/Conceptual Prerequisites are ideas that
-                    users need to have in order to engage with your app fully."),
-            tags$li("Pre-req 2--Contextual Prerequisites refer to any information
-                    about a context in your app that will enrich a user's
-                    understandings."),
-            tags$li("Pre-req 3"),
-            tags$li("Pre-req 4")
-          ),
-          p("Notice the use of an unordered list; users can move through the
-            list any way they wish."),
+          h2("Facts About Me"),
+          br(),
+          p("Hi everyone! My name is Luqi Jiao Emanuele. Althrough the first 
+            name looked like 'luqi', but It's actually pronounced as 'luchi' in 
+            Chinese."),
+          br(),
           box(
-            title = strong("Null Hypothesis Significance Tests (NHSTs)"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = TRUE,
-            width = '100%',
-            "In the Confirmatory Data Analysis tradition, null hypothesis
-            significance tests serve as a critical tool to confirm that a
-            particular theoretical model describes our data and to make a
-            generalization from our sample to the broader population
-            (i.e., make an inference). The null hypothesis often reflects the
-            simpler of two models (e.g., 'no statistical difference',
-            'there is an additive difference of 1', etc.) that we will use to
-            build a sampling distribution for our chosen estimator. These
-            methods let us test whether our sample data are consistent with this
-            simple model (null hypothesis)."
-          ),
-          box(
-            title = strong(tags$em("p"), "-values"),
+            title = strong("College Career"),
             status = "primary",
             collapsible = TRUE,
             collapsed = FALSE,
             width = '100%',
-            "The probability that our selected estimator takes on a value at
-            least as extreme as what we observed given our null hypothesis. If
-            we were to carry out our study infinitely many times and the null
-            hypothesis accurately modeled what we're studying, then we would
-            expect for our estimator to produce a value at least as extreme as
-            what we have seen 100*(p-value)% of the time. The larger the
-            p-value, the more often we would expect our estimator to take on a
-            value at least as extreme as what we've seen; the smaller, the less
-            often."
+            "I will be a senior student in Penn State. Studying the following 
+            majors:", 
+            br(),
+            br(),
+            tags$ul(
+              tags$li("B.S. in Economics"),
+              tags$li("B.S. in Statistics wil Applied Option"), 
+              tags$li("M.A.S. in Applied Statistics (starting in summer 2023)")
+            ),
+            br(),
+            "Also, I will be a first year student studying a M.A.S. in Applied 
+            Statistics in the Integrated Undergraduate/Graduate Program in the 
+            summer. This allows me to graduate with my Bachelor's degree and my 
+            Master's degree.", 
+            br(),
+            br(),
+            tags$em("If you need any suggestion about course or major, please feel free 
+            to reach out to me. I would love to help you out!")
+          ),
+          box(
+            title = strong("Personal Life"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = FALSE,
+            width = '100%',
+            "In my spare time, I would like to do the following things:",
+            br(),
+            br(),
+            tags$ul(
+              tags$li("Hanging out with friends"),
+              tags$li("Watching animations"), 
+              tags$li("Cooking Chinese and Italian food"),
+              tags$li("Playing video games"), 
+              tags$li("Planting vegetables")
+            ),
+            br(),
+            tags$em("If you have any good animations or video games suggestions, 
+                    please let me know!")
           )
         ),
         #### Note: you must have at least one of the following pages. You might
@@ -158,45 +164,37 @@ ui <- list(
         tabItem(
           tabName = "explore",
           withMathJax(),
-          h2("Explore the Concept"),
-          p("This page should include something for the user to do, the more
-            active and engaging, the better. The purpose of this page is to help
-            the user build a productive understanding of the concept your app
-            is dedicated to."),
-          p("Common elements include graphs, sliders, buttons, etc."),
-          p("The following comes from the NHST Caveats App:"),
+          h2("Our Family Chickens"),
+          p("This page showed the story behind my family chickens."),
+          br(),
+          p("During the first year of the pandemic of COVID-19, my parents were 
+            afraid of running out of eggs in the supermarkets since they limited 
+            how many boxes of eggs you can buy. We decided to raise the chickens 
+            on our own for the eggs."),
+          #tags$img(src = "chick.jpg") 
         ),
         #### Set up a Challenge Page ----
         tabItem(
           tabName = "challenge",
           withMathJax(),
-          h2("Challenge Yourself"),
-          p("The general intent of a Challenge page is to have the user take
-            what they learned in an Exploration and apply that knowledge in new
-            contexts/situations. In essence, to have them challenge their
-            understanding by testing themselves."),
-          p("What this page looks like will be up to you. Something you might
-            consider is to re-create the tools of the Exploration page and then
-            a list of questions for the user to then answer.")
+          h2("Guessing Game"),
+          p("From the Chick Chicken story, I will provide the picture of the 
+            chickens again for you to play a little guessing game.  "),
+          br(),
+          p("Question: How many chickens do we have? (Hint: the amount of chickens 
+            are between 10 to 20.)"),
+          br(),
+          tags$img(src = "chick.jpg", width = 200), 
+          br(),
+          tags$em("Please note, this picture does not show the correct amount of 
+                  chickens.")
         ),
         #### Set up a Game Page ----
         tabItem(
           tabName = "game",
           withMathJax(),
-          h2("Practice/Test Yourself with [Type of Game]"),
-          p("On this type of page, you'll set up a game for the user to play.
-            Game types include Tic-Tac-Toe, Matching, and a version Hangman to
-            name a few. If you have ideas for new game type, please let us know.")
-        ),
-        #### Set up a Wizard Page ----
-        tabItem(
-          tabName = "wizard",
-          withMathJax(),
-          h2("Wizard"),
-          p("This page will have a series of inputs and questions for the user to
-            answer/work through in order to have the app create something. These
-            types of Activity pages are currently rare as we try to avoid
-            creating 'calculators' in the BOAST project.")
+          h2("Explore the Timeline"),
+          p(""),
         ),
         #### Set up the References Page ----
         tabItem(

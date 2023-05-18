@@ -1,6 +1,6 @@
-Title: Sample App - A Lengthy Title
-ShortName: Sample App
-Date: 2021-05-13
+Title: Introducing Luqi JiaoEManuele 
+ShortName: Introducing Luqi 
+Date: 2021-05-17
 Lifecycle: experimental
 Authors@R: c(
     person(given = "Neil", family = "Hatfield", email = "neil.hatfield@psu.edu", role = c("aut", "cre")),
@@ -9,8 +9,8 @@ Authors@R: c(
 Chapter: Sample Chapter
 Description: This app is focused on the common types of xyz.
 LearningObjectives: c(
-    "The student will learn to understand Concept A in way z.",
-    "The student will learn to understand Concept B as description y."
+    "The user will getting to know information about who Luqi is.",
+    "The user will use little it of probability to play a little game."
   )
 DisplayMode: Normal
 URL: https://psu-eberly.shinyapps.io/Introducing_Luqi_JiaoEmanuele
