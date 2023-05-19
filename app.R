@@ -4,12 +4,14 @@ library(shinydashboard)
 library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
+library(shinya11y)
 
 # Load additional dependencies and setup functions
 # source("global.R")
 
 # Define UI for App ----
 ui <- list(
+  use_tota11y(),
   ## Create the app page ----
   dashboardPage(
     skin = "blue",
@@ -20,7 +22,7 @@ ui <- list(
       tags$li(class = "dropdown", actionLink("info", icon("info"))),
       tags$li(
         class = "dropdown",
-        boastUtils::surveyLink(name = "Introducing_Luqi")
+        boastUtils::surveyLink(name = "Introducing_Luqi_JiaoEmanuele")
       ),
       tags$li(
         class = "dropdown",
@@ -35,12 +37,9 @@ ui <- list(
       sidebarMenu(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
-        menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Example", tabName = "example", icon = icon("book-open-reader")),
         menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
         menuItem("Challenge", tabName = "challenge", icon = icon("gears")),
         menuItem("Game", tabName = "game", icon = icon("gamepad")),
-        menuItem("Wizard", tabName = "wizard", icon = icon("hat-wizard")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -51,7 +50,7 @@ ui <- list(
     ### Create the content ----
     dashboardBody(
       tabItems(
-        #### Set up the Overview Page ----
+        #### Overview Page ----
         tabItem(
           tabName = "overview",
           withMathJax(),
@@ -70,12 +69,13 @@ ui <- list(
             tags$li("Playing a game to explore the important moments in my life 
                     using the Game Tab.")
           ),
+          br(),
           ##### Go Button--location will depend on your goals
           div(
             style = "text-align: center;",
             bsButton(
-              inputId = "go1",
-              label = "GO!",
+              inputId = "goToExplore",
+              label = "Explore!",
               size = "large",
               icon = icon("bolt"),
               style = "default"
@@ -101,62 +101,10 @@ ui <- list(
             div(class = "updated", "Last Update: 11/8/2022 by NJH.")
           )
         ),
-        #### Set up the Prerequisites Page ----
-        tabItem(
-          tabName = "prerequisites",
-          withMathJax(),
-          h2("Prerequisites"),
-          p("In order to get the most out of this app, please review the
-            following:"),
-          tags$ul(
-            tags$li("Pre-req 1--Technical/Conceptual Prerequisites are ideas that
-                    users need to have in order to engage with your app fully."),
-            tags$li("Pre-req 2--Contextual Prerequisites refer to any information
-                    about a context in your app that will enrich a user's
-                    understandings."),
-            tags$li("Pre-req 3"),
-            tags$li("Pre-req 4")
-          ),
-          p("Notice the use of an unordered list; users can move through the
-            list any way they wish."),
-          box(
-            title = strong("Null Hypothesis Significance Tests (NHSTs)"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = TRUE,
-            width = '100%',
-            "In the Confirmatory Data Analysis tradition, null hypothesis
-            significance tests serve as a critical tool to confirm that a
-            particular theoretical model describes our data and to make a
-            generalization from our sample to the broader population
-            (i.e., make an inference). The null hypothesis often reflects the
-            simpler of two models (e.g., 'no statistical difference',
-            'there is an additive difference of 1', etc.) that we will use to
-            build a sampling distribution for our chosen estimator. These
-            methods let us test whether our sample data are consistent with this
-            simple model (null hypothesis)."
-          ),
-          box(
-            title = strong(tags$em("p"), "-values"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = FALSE,
-            width = '100%',
-            "The probability that our selected estimator takes on a value at
-            least as extreme as what we observed given our null hypothesis. If
-            we were to carry out our study infinitely many times and the null
-            hypothesis accurately modeled what we're studying, then we would
-            expect for our estimator to produce a value at least as extreme as
-            what we have seen 100*(p-value)% of the time. The larger the
-            p-value, the more often we would expect our estimator to take on a
-            value at least as extreme as what we've seen; the smaller, the less
-            often."
-          )
-        ),
         #### Note: you must have at least one of the following pages. You might
         #### have more than one type and/or more than one of the same type. This
         #### will be up to you and the goals for your app.
-        #### Set up an Explore Page ----
+        #### Explore Page ----
         tabItem(
           tabName = "explore",
           withMathJax(),
@@ -169,7 +117,7 @@ ui <- list(
             title = strong("College Career"),
             status = "primary",
             collapsible = TRUE,
-            collapsed = FALSE,
+            collapsed = TRUE,
             width = '100%',
             "I will be a senior student in Penn State. Studying the following 
             majors:", 
@@ -194,7 +142,7 @@ ui <- list(
             title = strong("Personal Life"),
             status = "primary",
             collapsible = TRUE,
-            collapsed = FALSE,
+            collapsed = TRUE,
             width = '100%',
             "In my spare time, I would like to do the following things:",
             br(),
@@ -210,8 +158,21 @@ ui <- list(
             tags$em("If you have any good animations or video games suggestions, 
                     please let me know!")
           ),
+          br(),
+          p("Please use the bottom below to expore a challenge game."),
+          br(),
+          div(
+            style = "text-align: center;",
+            bsButton(
+              inputId = "goToChallenge",
+              label = "Challenge!",
+              size = "large",
+              icon = icon("forward"),
+              style = "default"
+            )
+          )
         ),
-        #### Set up a Challenge Page ----
+        #### Challenge Page ----
         tabItem(
           tabName = "challenge",
           withMathJax(),
@@ -225,54 +186,146 @@ ui <- list(
           p("From the Chick Chicken story, I will provide the picture of the 
             chickens again for you to play a little guessing game.  "),
           br(),
-          p("Question: How many chickens do we have? (Hint: the amount of chickens 
-            are between 10 to 20.)"),
+          tags$strong("Question: How many chickens do we have?"),
           br(),
-          tags$img(src = "chick.jpg", width = 200), 
+          tags$em("(Hint: the amount of chickens are between 10 to 20.)"),
+          br(),
+          br(),
+          tags$figure(
+            class = "centerFigure",
+          tags$img(
+            src = "chick.jpg", 
+            width = 300,
+            alt = "Photo of the chickens")
+          ),
+          br(),
           br(),
           tags$em("Please note, this picture does not show the correct amount of 
-                  chickens.")
+                  the chickens."),
+          br(),
+          fluidRow(
+            column(
+              width = 5,
+              offset = 0,
+              wellPanel(
+                selectInput(
+                  inputId = "selectNumber",
+                  label = "Select a number",
+                  choices = c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "Select one"),
+                  selected = "Select one"
+                ),
+                bsButton(
+                  inputId = "getResult",
+                  label = "Submit",
+                  size = "large",
+                  style = "default"
+                )
+              )
+            ),
+            column(
+              width = 7,
+              offset = 1,
+              plotOutput(outputId = "resultOutput")
+            )
+          ),
+          br(),
+          br(),
+          div(
+            style = "text-align: center;",
+            bsButton(
+              inputId = "goToGame",
+              label = "Game!",
+              size = "large",
+              icon = icon("forward"),
+              style = "default"
+            )
+          )
         ),
-        #### Set up a Game Page ----
+        #### Game Page ----
         tabItem(
           tabName = "game",
           withMathJax(),
           h2("Explore the Timeline"),
-          p("On this type of page, you'll set up a game for the user to play.
-            Game types include Tic-Tac-Toe, Matching, and a version Hangman to
-            name a few. If you have ideas for new game type, please let us know.")
+          p("On this type of page, you will explore different years to see some 
+            of my important things happened in my life."), 
+          br(),
+          fluidRow(
+            column(
+              width = 12,
+              sliderInput(
+                inputId = "year",
+                label = "Select a year",
+                min = 2016,
+                max = 2023,
+                value = 50,
+                step = 1
+              ),
+              uiOutput("timeLine")
+            )
         ),
-        #### Set up a Wizard Page ----
-        tabItem(
-          tabName = "wizard",
-          withMathJax(),
-          h2("Wizard"),
-          p("This page will have a series of inputs and questions for the user to
-            answer/work through in order to have the app create something. These
-            types of Activity pages are currently rare as we try to avoid
-            creating 'calculators' in the BOAST project.")
+        br(),
+          div(
+            style = "text-align: center;",
+            bsButton(
+              inputId = "goToReferences",
+              label = "References!",
+              size = "large",
+              icon = icon("book"),
+              style = "default"
+            )
+          )
         ),
-        #### Set up the References Page ----
+        #### References Page ----
         tabItem(
           tabName = "references",
           withMathJax(),
-          h2("References"),
-          p("You'll need to fill in this page with all of the appropriate
-            references for your app."),
-          p(
-            class = "hangingindent",
-            "Bailey, E. (2015). shinyBS: Twitter bootstrap components for shiny.
-            (v0.61). [R package]. Available from
+          tabItem(
+            tabName = "References",
+            h2("References"),
+            p(     #shinyBS
+              class = "hangingindent",
+              "Bailey, E. (2015), shinyBS: Twitter bootstrap components for shiny,
+            R package. Available from
             https://CRAN.R-project.org/package=shinyBS"
-          ),
-          br(),
+            ),
+            p(     #Boast Utilities
+              class = "hangingindent",
+              "Carey, R. (2019), boastUtils: BOAST Utilities, R Package.
+            Available from
+            https://github.com/EducationShinyAppTeam/boastUtils"
+            ),
+            p(     #shinydashboard
+              class = "hangingindent",
+              "Chang, W. and Borges Ribeio, B. (2018), shinydashboard: Create
+            dashboards with 'Shiny', R Package. Available from
+            https://CRAN.R-project.org/package=shinydashboard"
+            ),
+            p(     #shiny
+              class = "hangingindent",
+              "Chang, W., Cheng, J., Allaire, J., Xie, Y., and McPherson, J.
+            (2019), shiny: Web application framework for R, R Package.
+            Available from https://CRAN.R-project.org/package=shiny"
+            ),
+            p(     #shinyWidgets
+              class = "hangingindent",
+              "Perrier, V., Meyer, F., Granjon, D., Fellows, I., and Davis, W.
+            (2020), shinyWidgets: Custom Inputs Widgets for Shiny, R package.
+            Available from
+            https://cran.r-project.org/web/packages/shinyWidgets/index.html"
+            ),
+            p(      #shinya11y
+              class = "hangingindent",
+              "Henderson E, Scales J, Yates J (2023). _shinya11y: Accessibility (a11y) Tooling for
+            'Shiny'_. R package version 0.0.0.9000."
+            ),
           br(),
           br(),
           boastUtils::copyrightInfo()
-        )
-      )
+     )
     )
+   )
   )
+ )
 )
 
 # Define server logic ----
@@ -291,6 +344,112 @@ server <- function(input, output, session) {
     }
   )
   
+  ## Move to Explore Page ----
+  observeEvent(
+    eventExpr = input$goToExplore,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected = "explore"
+      )
+    }
+  )
+  
+  ## Move to Challenge Page ----
+  observeEvent(
+    eventExpr = input$goToChallenge,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected = "challenge"
+      )
+    }
+  )
+  
+  ## Move to Game Page ----
+  observeEvent(
+    eventExpr = input$goToGame,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected = "game"
+      )
+    }
+  )
+  
+  ##
+  
+  ## Move to Reference Page ----
+  observeEvent(
+    eventExpr = input$goToReferences,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected = "references"
+      )
+    }
+  )
+  
+  ## Timeline ----
+  output$timeLine <- renderUI({
+    if(input$year == "2016"){
+      tags$figure(
+        class = "leftFigure",
+        tags$img(
+          src = "pic16.jpg", 
+          width = 300,
+          alt = "Photo of my baby sister"),
+        br(),
+        br(),
+        p("This is the year that my baby sister were born.")
+      )
+    } 
+    else if(input$year == "2018"){
+      tags$figure(
+        class = "leftFigure",
+        tags$img(
+          src = "pic18.jpg", 
+          width = 450,
+          alt = "Photo of flute group"),
+        br(),
+        br(),
+        p("This is the year that I first participated in the 
+          band as a flute player.")
+      )
+    } 
+    else if(input$year == "2020") {
+      tags$figure(
+        class = "leftFigure",
+        tags$img(
+          src = "pic20.jpg", 
+          width = 300,
+          alt = "Photo of my graduation picture with my brother and sister"),
+        br(),
+        br(),
+        p("This is the year that I graduated from High school during Pandemic.")
+      )
+    } 
+    else if(input$year == "2023") {
+      tags$figure(
+        class = "leftFigure",
+        tags$img(
+          src = "pic23.jpg", 
+          width = 450,
+          alt = "Photo of MAS admission letter"),
+        br(),
+        br(),
+        p("This is the year that I got accpted into the M.A.S of Applied 
+          Statistics with IUG program in Penn State.")
+      )
+    }
+    else {
+      p("Please select another year")
+    }
+  })
   
 }
 
