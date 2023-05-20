@@ -55,8 +55,8 @@ ui <- list(
           tabName = "overview",
           withMathJax(),
           h1("Who am I?"), # This should be the full name.
-          p("This is a sample Shiny application for BOAST. Which will help you 
-            to get to know who I am."),
+          p("This is a sample Shiny application for BOAST. Which will introduce 
+            to you who Luqi Jiao Emanuele is."),
           br(),
           br(),
           h2("Instructions"),
@@ -113,6 +113,13 @@ ui <- list(
             name looked like 'luqi', but It's actually pronounced as 'luchi' in 
             Chinese."),
           br(),
+          tags$figure(
+            class = "centerFigure",
+            tags$img(
+              src = "photo.jpeg", 
+              width = 300,
+              alt = "Headshot of Luqi"),
+            br(),
           box(
             title = strong("College Career"),
             status = "primary",
@@ -159,7 +166,7 @@ ui <- list(
                     please let me know!")
           ),
           br(),
-          p("Please use the bottom below to expore a challenge game."),
+          p("Please use the bottom below to expore a challenge game behind a story."),
           br(),
           div(
             style = "text-align: center;",
@@ -171,6 +178,7 @@ ui <- list(
               style = "default"
             )
           )
+        )
         ),
         #### Challenge Page ----
         tabItem(
@@ -183,10 +191,10 @@ ui <- list(
             afraid of running out of eggs in the supermarkets since they limited 
             how many boxes of eggs you can buy. We decided to raise the chickens 
             on our own for the eggs."),
-          p("From the Chick Chicken story, I will provide the picture of the 
-            chickens again for you to play a little guessing game.  "),
+          p("From the Chick Chicken story, I provide a picture of the 
+            chickens for you to play a little guessing game.  "),
           br(),
-          tags$strong("Question: How many chickens do we have?"),
+          tags$strong("Question: How many chickens do I have now?"),
           br(),
           tags$em("(Hint: the amount of chickens are between 10 to 20.)"),
           br(),
@@ -203,6 +211,7 @@ ui <- list(
           tags$em("Please note, this picture does not show the correct amount of 
                   the chickens."),
           br(),
+          br(),
           fluidRow(
             column(
               width = 5,
@@ -215,7 +224,7 @@ ui <- list(
                   selected = "Select one"
                 ),
                 bsButton(
-                  inputId = "getResult",
+                  inputId = "submit",
                   label = "Submit",
                   size = "large",
                   style = "default"
@@ -223,12 +232,14 @@ ui <- list(
               )
             ),
             column(
-              width = 7,
+              width = 6,
               offset = 1,
-              plotOutput(outputId = "resultOutput")
-            )
+              br(),
+              uiOutput("result")
+          )
           ),
           br(),
+          p("Use the buttom below to explroe a game of a timeline."),
           br(),
           div(
             style = "text-align: center;",
@@ -239,7 +250,7 @@ ui <- list(
               icon = icon("forward"),
               style = "default"
             )
-          )
+        ),
         ),
         #### Game Page ----
         tabItem(
@@ -247,7 +258,7 @@ ui <- list(
           withMathJax(),
           h2("Explore the Timeline"),
           p("On this type of page, you will explore different years to see some 
-            of my important things happened in my life."), 
+            of the important things happened in my life!"), 
           br(),
           fluidRow(
             column(
@@ -257,23 +268,12 @@ ui <- list(
                 label = "Select a year",
                 min = 2016,
                 max = 2023,
-                value = 50,
+                value = 1,
                 step = 1
               ),
               uiOutput("timeLine")
             )
-        ),
-        br(),
-          div(
-            style = "text-align: center;",
-            bsButton(
-              inputId = "goToReferences",
-              label = "References!",
-              size = "large",
-              icon = icon("book"),
-              style = "default"
-            )
-          )
+        )
         ),
         #### References Page ----
         tabItem(
@@ -339,7 +339,7 @@ server <- function(input, output, session) {
         session = session,
         type = "info",
         title = "Information",
-        text = "This App Template will help you get started building your own app"
+        text = "This App will introduce Luqi to you."
       )
     }
   )
@@ -380,19 +380,19 @@ server <- function(input, output, session) {
     }
   )
   
-  ##
-  
-  ## Move to Reference Page ----
-  observeEvent(
-    eventExpr = input$goToReferences,
-    handlerExpr = {
-      updateTabItems(
-        session = session,
-        inputId = "pages",
-        selected = "references"
-      )
+  ## Challenge result ----
+  observeEvent(input$submit, {
+    if (!is.null(input$selectNumber)) {
+      correct <- input$selectNumber == 11 
+      
+      if (correct) {
+        output$result <- boastUtils::renderIcon(icon = "correct", width = 80)
+      } else {
+        output$result <- boastUtils::renderIcon(icon = "incorrect", width = 80)
+      }
     }
-  )
+  })
+
   
   ## Timeline ----
   output$timeLine <- renderUI({
@@ -401,11 +401,13 @@ server <- function(input, output, session) {
         class = "leftFigure",
         tags$img(
           src = "pic16.jpg", 
-          width = 300,
+          width = 350,
           alt = "Photo of my baby sister"),
         br(),
         br(),
-        p("This is the year that my baby sister were born.")
+        p("This is the year that my baby sister was born. She is very cute and 
+          energetic. Brings a lot of fun especially since we were quarantined at
+          home during the pandemic.")
       )
     } 
     else if(input$year == "2018"){
@@ -413,12 +415,13 @@ server <- function(input, output, session) {
         class = "leftFigure",
         tags$img(
           src = "pic18.jpg", 
-          width = 450,
+          width = 500,
           alt = "Photo of flute group"),
         br(),
         br(),
-        p("This is the year that I first participated in the 
-          band as a flute player.")
+        p("This is the year that I first participated in the High school band as
+          a flute player. Later, I also played tenor saxophone. This is the picture
+          of the flute section token before a football game of the marching band.")
       )
     } 
     else if(input$year == "2020") {
@@ -426,11 +429,13 @@ server <- function(input, output, session) {
         class = "leftFigure",
         tags$img(
           src = "pic20.jpg", 
-          width = 300,
+          width = 350,
           alt = "Photo of my graduation picture with my brother and sister"),
         br(),
         br(),
-        p("This is the year that I graduated from High school during Pandemic.")
+        p("This is the year that I graduated from High school during the Pandemic. 
+          Since I didn't go to the visual graduation ceremony, so we decided to 
+          take photos of me with my brother and sister on our driveway. ")
       )
     } 
     else if(input$year == "2023") {
@@ -438,19 +443,21 @@ server <- function(input, output, session) {
         class = "leftFigure",
         tags$img(
           src = "pic23.jpg", 
-          width = 450,
+          width = 500,
           alt = "Photo of MAS admission letter"),
         br(),
         br(),
-        p("This is the year that I got accpted into the M.A.S of Applied 
-          Statistics with IUG program in Penn State.")
+        p("This is the year that I got accepted into the M.A.S of Applied 
+          Statistics with the Integrated Undergraduate/Graduate program in Penn 
+          State. This allows me to achieve a Graduate degree while finishing my 
+          undergraduate degrees.")
       )
     }
     else {
-      p("Please select another year")
+      p("Everything is important. Please select another year.")
     }
-  })
-  
+  }
+  )
 }
 
 # Boast App Call ----
