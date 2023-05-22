@@ -1,4 +1,4 @@
-Title: Introducing Luqi JiaoEManuele 
+Title: Introducing Luqi Jiao Emanuele 
 ShortName: Introducing Luqi 
 Date: 2021-05-17
 Lifecycle: experimental
@@ -6,11 +6,12 @@ Authors@R: c(
     person(given = "Neil", family = "Hatfield", email = "neil.hatfield@psu.edu", role = c("aut", "cre")),
     person(given = "Robert", family = "Carey", email = "rpc5102@psu.edu", role = c("aut"))
   )
-Chapter: Sample Chapter
-Description: This app is focused on the common types of xyz.
+Chapter: Introduction
+Description: This app introduces Luqi Jiao Emanuele by showing her information, using a chicken story back to play a game, and exploring exciting things for her over the years. 
 LearningObjectives: c(
     "The user will getting to know information about who Luqi is.",
-    "The user will use little it of probability to play a little game."
+    "The user will use basic knowledge of statistics to play a challenge game behind a story."
+    "The user will be exploring some important moments that happened over time by playing with the slider."
   )
 DisplayMode: Normal
 URL: https://psu-eberly.shinyapps.io/Introducing_Luqi_JiaoEmanuele

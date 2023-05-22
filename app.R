@@ -54,7 +54,7 @@ ui <- list(
         tabItem(
           tabName = "overview",
           withMathJax(),
-          h1("Who am I?"), # This should be the full name.
+          h1("Introducing Luqi Jiao Emanuele"), 
           p("This is a sample Shiny application for BOAST. Which will introduce 
             to you who Luqi Jiao Emanuele is."),
           br(),
@@ -62,7 +62,6 @@ ui <- list(
           h2("Instructions"),
           p("The following pages are for you to feel free to explore!"),
           tags$ol(
-            tags$li("View the prerequiste using the Prerequistes Tab."),
             tags$li("Review any facts about me using the Explore Tab."),
             tags$li("Challenge yourself by playing a little game behind a story 
                     using the Challenge Tab."),
@@ -166,7 +165,7 @@ ui <- list(
                     please let me know!")
           ),
           br(),
-          p("Please use the bottom below to expore a challenge game behind a story."),
+          p("Please use the button below to expore a challenge game behind a story."),
           br(),
           div(
             style = "text-align: center;",
@@ -185,16 +184,21 @@ ui <- list(
           tabName = "challenge",
           withMathJax(),
           h2("Our Family Chickens"),
-          p("This page showed the story behind my family chickens."),
+          p("This page is showing a story behind my family chickens with a challange
+            game."),
           br(),
           p("During the first year of the pandemic of COVID-19, my parents were 
             afraid of running out of eggs in the supermarkets since they limited 
             how many boxes of eggs you can buy. We decided to raise the chickens 
             on our own for the eggs."),
-          p("From the Chick Chicken story, I provide a picture of the 
-            chickens for you to play a little guessing game.  "),
+          p("In the beginning, we had 8 chickens, but my parents were afraid of 
+            we couldn't get enough eggs for a family of six. So, we decided to 
+            buy 15 more. However, we realized eggs from the 23 chickens are too 
+            many for our family. Which caused us to give the extra eggs to the 
+            neighbors and spent more money on chicken feed. Therefore, we decided 
+            to send some chickens to our neighbors."),
           br(),
-          tags$strong("Question: How many chickens do I have now?"),
+          tags$strong("Question: How many chickens do we have now?"),
           br(),
           tags$em("(Hint: the amount of chickens are between 10 to 20.)"),
           br(),
@@ -239,7 +243,7 @@ ui <- list(
           )
           ),
           br(),
-          p("Use the buttom below to explroe a game of a timeline."),
+          p("Use the buttom below to explore a game of a timeline."),
           br(),
           div(
             style = "text-align: center;",
@@ -306,17 +310,17 @@ ui <- list(
             (2019), shiny: Web application framework for R, R Package.
             Available from https://CRAN.R-project.org/package=shiny"
             ),
+            p(      #shinya11y
+              class = "hangingindent",
+              "Henderson E, Scales J, Yates J (2023). _shinya11y: Accessibility (a11y) Tooling for
+            'Shiny'_. R package version 0.0.0.9000."
+            ),
             p(     #shinyWidgets
               class = "hangingindent",
               "Perrier, V., Meyer, F., Granjon, D., Fellows, I., and Davis, W.
             (2020), shinyWidgets: Custom Inputs Widgets for Shiny, R package.
             Available from
             https://cran.r-project.org/web/packages/shinyWidgets/index.html"
-            ),
-            p(      #shinya11y
-              class = "hangingindent",
-              "Henderson E, Scales J, Yates J (2023). _shinya11y: Accessibility (a11y) Tooling for
-            'Shiny'_. R package version 0.0.0.9000."
             ),
           br(),
           br(),
