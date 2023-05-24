@@ -3,8 +3,7 @@ ShortName: Introducing Luqi
 Date: 2021-05-17
 Lifecycle: experimental
 Authors@R: c(
-    person(given = "Neil", family = "Hatfield", email = "neil.hatfield@psu.edu", role = c("aut", "cre")),
-    person(given = "Robert", family = "Carey", email = "rpc5102@psu.edu", role = c("aut"))
+    person(given = "Luqi", family = "Jiao Emanuele", email = "lzz5263d@psu.edu", role = c("aut", "cre"))
   )
 Chapter: Introduction
 Description: This app introduces Luqi Jiao Emanuele by showing her information, using a chicken story back to play a game, and exploring exciting things for her over the years. 
@@ -17,5 +16,5 @@ DisplayMode: Normal
 URL: https://psu-eberly.shinyapps.io/Introducing_Luqi_JiaoEmanuele
 BugReports: https://github.com/EducationShinyAppTeam/Introducing_Luqi_JiaoEmanuele
 License: CC-BY-NC-SA-4.0
-Tags: simulation
+Tags: introduction app
 Type: Shiny 

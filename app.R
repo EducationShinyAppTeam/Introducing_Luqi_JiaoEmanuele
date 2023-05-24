@@ -85,11 +85,7 @@ ui <- list(
           br(),
           h2("Acknowledgements"),
           p(
-            "This version of the app was developed and coded by Neil J.
-            Hatfield  and Robert P. Carey, III.",
-            br(),
-            "We would like to extend a special thanks to the Shiny Program
-            Students.",
+            "This version of the app was developed and coded by Luqi Jiao Emanuele.",
             br(),
             br(),
             "Cite this app as:",
@@ -97,7 +93,7 @@ ui <- list(
             citeApp(),
             br(),
             br(),
-            div(class = "updated", "Last Update: 11/8/2022 by NJH.")
+            div(class = "updated", "Last Update: 5/23/2023 by LJE.")
           )
         ),
         #### Note: you must have at least one of the following pages. You might
@@ -261,19 +257,22 @@ ui <- list(
           tabName = "game",
           withMathJax(),
           h2("Explore the Timeline"),
-          p("On this type of page, you will explore different years to see some 
+          p("On this page, you will explore different years to see some 
             of the important things happened in my life!"), 
           br(),
           fluidRow(
             column(
               width = 12,
+              wellPanel(
               sliderInput(
                 inputId = "year",
                 label = "Select a year",
+                sep = " ",
                 min = 2016,
                 max = 2023,
-                value = 1,
+                value = 4,
                 step = 1
+              )
               ),
               uiOutput("timeLine")
             )
@@ -402,7 +401,7 @@ server <- function(input, output, session) {
   output$timeLine <- renderUI({
     if(input$year == "2016"){
       tags$figure(
-        class = "leftFigure",
+        class = "centerFigure",
         tags$img(
           src = "pic16.jpg", 
           width = 350,
@@ -416,7 +415,7 @@ server <- function(input, output, session) {
     } 
     else if(input$year == "2018"){
       tags$figure(
-        class = "leftFigure",
+        class = "centerFigure",
         tags$img(
           src = "pic18.jpg", 
           width = 500,
@@ -430,7 +429,7 @@ server <- function(input, output, session) {
     } 
     else if(input$year == "2020") {
       tags$figure(
-        class = "leftFigure",
+        class = "centerFigure",
         tags$img(
           src = "pic20.jpg", 
           width = 350,
@@ -444,7 +443,7 @@ server <- function(input, output, session) {
     } 
     else if(input$year == "2023") {
       tags$figure(
-        class = "leftFigure",
+        class = "centerFigure",
         tags$img(
           src = "pic23.jpg", 
           width = 500,
