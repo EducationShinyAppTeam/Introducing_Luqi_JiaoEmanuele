@@ -239,7 +239,7 @@ ui <- list(
           )
           ),
           br(),
-          p("Use the buttom below to explore a game of a timeline."),
+          p("Use the button below to explore a game of a timeline."),
           br(),
           div(
             style = "text-align: center;",
@@ -267,11 +267,11 @@ ui <- list(
               sliderInput(
                 inputId = "year",
                 label = "Select a year",
-                sep = " ",
                 min = 2016,
                 max = 2023,
                 value = 4,
-                step = 1
+                step = 1,
+                sep = " "
               )
               ),
               uiOutput("timeLine")
