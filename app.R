@@ -93,7 +93,7 @@ ui <- list(
             citeApp(),
             br(),
             br(),
-            div(class = "updated", "Last Update: 5/23/2023 by LJE.")
+            div(class = "updated", "Last Update: 5/25/2023 by LJE.")
           )
         ),
         #### Note: you must have at least one of the following pages. You might
@@ -219,7 +219,7 @@ ui <- list(
               wellPanel(
                 selectInput(
                   inputId = "selectNumber",
-                  label = "Select a number",
+                  label = "Select a number:",
                   choices = c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "Select one"),
                   selected = "Select one"
                 ),
@@ -266,7 +266,7 @@ ui <- list(
               wellPanel(
               sliderInput(
                 inputId = "year",
-                label = "Select a year",
+                label = "Select a year:",
                 min = 2016,
                 max = 2023,
                 value = 4,
