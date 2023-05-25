@@ -264,14 +264,14 @@ ui <- list(
             column(
               width = 12,
               wellPanel(
-              sliderInput(
+              shiny::sliderInput(
                 inputId = "year",
                 label = "Select a year:",
                 min = 2016,
                 max = 2023,
-                value = 4,
+                value = 1,
                 step = 1,
-                sep = " "
+                sep = ""
               )
               ),
               uiOutput("timeLine")
