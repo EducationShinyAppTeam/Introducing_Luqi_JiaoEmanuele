@@ -9,7 +9,7 @@ Chapter: Introduction
 Description: This app introduces Luqi Jiao Emanuele by showing her information, using a chicken story back to play a game, and exploring exciting things for her over the years. 
 LearningObjectives: c(
     "The user will getting to know information about who Luqi is.",
-    "The user will use basic knowledge of statistics to play a challenge game behind a story."
+    "The user will use basic knowledge of statistics to challenge based on a story.",
     "The user will be exploring some important moments that happened over time by playing with the slider."
   )
 DisplayMode: Normal
